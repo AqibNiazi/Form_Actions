@@ -15,40 +15,30 @@ export default function Signup() {
     const role = formData.get("role");
     const terms = formData.get("terms");
     const acquisitionChannel = formData.getAll("acquisition");
-    console.log(
-      email,
-      password,
-      confirmPassword,
-      firstName,
-      lastName,
-      role,
-      terms,
-      acquisitionChannel
-    );
 
-    // let errors = [];
+    const errors = [];
 
-    // if (!isEmail(email)) {
-    //   errors.push("Email is not valid");
-    // }
-    // if (!isNotEmpty(Password) || !hasMinLength(Password, 6)) {
-    //   errors.push("Password is not valid");
-    // }
-    // if (!isEqualToOtherValue(Password, ConfirmPassword)) {
-    //   errors.push("Password and Confirm Password do not match");
-    // }
-    // if (!isNotEmpty(FirstName) || !isNotEmpty(LastName)) {
-    //   errors.push("Please provide First Name and Last Name");
-    // }
-    // if (!isNotEmpty(Role)) {
-    //   errors.push("Please select a role");
-    // }
-    // if (!isNotEmpty(Terms)) {
-    //   errors.push("Please accept the terms and conditions");
-    // }
-    // if (Acquisition.length === 0) {
-    //   errors.push("Please select at least one acquisition channel");
-    // }
+    if (!isEmail(email)) {
+      errors.push("Invalid Email address");
+    }
+    if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
+      errors.push("You must provide a password with at least 6 characters");
+    }
+    if (!isEqualToOtherValue(password, confirmPassword)) {
+      errors.push("Passwords do not match");
+    }
+    if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
+      errors.push("Please provide First and Last Name");
+    }
+    if (!isNotEmpty(role)) {
+      errors.push("Please select a role");
+    }
+    if (!terms) {
+      errors.push("Please accept the terms and conditions");
+    }
+    if (acquisitionChannel.length === 0) {
+      errors.push("Please select at least one acquisition channel");
+    }
     // if (errors.length > 0) {
     //   return { errors };
     // }
