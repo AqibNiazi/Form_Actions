@@ -1,3 +1,4 @@
+import { useActionState } from "react";
 import {
   isEmail,
   isEqualToOtherValue,
@@ -5,41 +6,59 @@ import {
   hasMinLength,
 } from "../util/validation";
 export default function Signup() {
-  const signupAction = (formdata) => {
-    const Email = formdata.get("email");
-    const Password = formdata.get("password");
-    const ConfirmPassword = formdata.get("confirm-password");
-    const FirstName = formdata.get("first-name");
-    const LastName = formdata.get("last-name");
-    const Role = formdata.get("role");
-    const Terms = formdata.get("terms");
-    const Acquisition = formdata.getAll("acquisition");
+  const signupAction = (formData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
+    const firstName = formData.get("first-name");
+    const lastName = formData.get("last-name");
+    const role = formData.get("role");
+    const terms = formData.get("terms");
+    const acquisitionChannel = formData.getAll("acquisition");
+    console.log(
+      email,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      role,
+      terms,
+      acquisitionChannel
+    );
 
-    const error = [];
-    if (!isEmail(Email)) {
-      {
-        error.push("Email is not valid");
-      }
-      if (!isNotEmpty(Password) || !hasMinLength(Password, 6)) {
-        error.push("Password is not valid");
-      }
-      if (!isEqualToOtherValue(Password, ConfirmPassword)) {
-        error.push("Password and Confirm Password do not match");
-      }
-      if (!isNotEmpty(FirstName) || !isNotEmpty(LastName)) {
-        error.push("Please provide First Name and Last Name");
-      }
-      if (!isNotEmpty(Role)) {
-        error.push("Please select a role");
-      }
-      if (!isNotEmpty(Terms)) {
-        error.push("Please accept the terms and conditions");
-      }
-      if (Acquisition.length === 0) {
-        error.push("Please select at least one acquisition channel");
-      }
-    }
+    // let errors = [];
+
+    // if (!isEmail(email)) {
+    //   errors.push("Email is not valid");
+    // }
+    // if (!isNotEmpty(Password) || !hasMinLength(Password, 6)) {
+    //   errors.push("Password is not valid");
+    // }
+    // if (!isEqualToOtherValue(Password, ConfirmPassword)) {
+    //   errors.push("Password and Confirm Password do not match");
+    // }
+    // if (!isNotEmpty(FirstName) || !isNotEmpty(LastName)) {
+    //   errors.push("Please provide First Name and Last Name");
+    // }
+    // if (!isNotEmpty(Role)) {
+    //   errors.push("Please select a role");
+    // }
+    // if (!isNotEmpty(Terms)) {
+    //   errors.push("Please accept the terms and conditions");
+    // }
+    // if (Acquisition.length === 0) {
+    //   errors.push("Please select at least one acquisition channel");
+    // }
+    // if (errors.length > 0) {
+    //   return { errors };
+    // }
+
+    // return { errors: null };
   };
+
+  // const [formState, formAction] = useActionState(signupAction, {
+  //   errors: null,
+  // });
   return (
     <form action={signupAction}>
       <h2>Welcome on board!</h2>
